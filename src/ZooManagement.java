@@ -53,7 +53,7 @@ public class ZooManagement {
         Zoo myZoo = new Zoo();
         myZoo.name = "Parc Animalier";
         myZoo.city = "Tunis";
-        myZoo.nbrCages = 20;
+
 
         System.out.println("Zoo : " + myZoo.name + " à " + myZoo.city);
         System.out.println("Animal : " + lion.name + " (" + lion.family + ")");
@@ -79,6 +79,43 @@ public class ZooManagement {
         System.out.println(myZoo1);
         System.out.println(myZoo1.toString());
 
+
+        /* ====================== Prosit 3 ====================== */
+
+
+        // Instruction 10
+        myZoo1.addAnimal(tiger);
+        myZoo1.addAnimal(crocodile);
+        myZoo1.addAnimal(parrot);
+        myZoo1.addAnimal(lion);
+        boolean ajout = myZoo1.addAnimal(tiger);
+        System.out.println("Ajout animal déjà existant : " + ajout);
+
+        // Instruction 11
+        myZoo1.displayAnimals();
+        System.out.println("Index de Tiger : " + myZoo1.searchAnimal(tiger));
+        Animal lion2 = new Animal("Félidé", "Lion", 5, true);
+        System.out.println("Index de Lion2 : " + myZoo1.searchAnimal(lion2));
+
+        // Instruction 13
+        boolean suppr = myZoo1.removeAnimal(parrot);
+        System.out.println("Suppression du perroquet : " + suppr);
+        myZoo1.displayAnimals();
+
+        // Instruction 15
+        System.out.println("Le zoo est-il plein ? " + myZoo1.isZooFull());
+
+        // Instruction 16
+        Zoo autreZoo = new Zoo("MiniZoo", "Sfax", 20);
+        autreZoo.addAnimal(new Animal("Félidé", "Chat", 2, true));
+        compareZoos(myZoo1, autreZoo);
+
         sc.close();
+    }
+
+    // afficher le zoo avec le plus d’animaux
+    public static void compareZoos(Zoo z1, Zoo z2) {
+        Zoo plusGrand = Zoo.comparerZoo(z1, z2);
+        System.out.println("Le zoo avec le plus d’animaux est : " + plusGrand.name + " avec " + plusGrand.animalCount + " animaux.");
     }
 }
