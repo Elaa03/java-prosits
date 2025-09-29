@@ -1,3 +1,8 @@
+package tn.esprit.gestionzoo.main;
+
+import tn.esprit.gestionzoo.entities.Animal;
+import tn.esprit.gestionzoo.entities.Zoo;
+
 import java.util.Scanner;
 
 public class ZooManagement {
@@ -10,7 +15,6 @@ public class ZooManagement {
         String zooName = "my zoo";
 
         System.out.println(zooName + " comporte " + nbrCages + " cages.");
-
 
         //Instruction 2
         Scanner sc = new Scanner(System.in);
@@ -35,29 +39,25 @@ public class ZooManagement {
         }
         nbrCages = inputNbrCages;
 
-
         //Instruction 3
         System.out.println(zooName + " comporte " + nbrCages + " cages.");
 
 
         /* ====================== Prosit 2 ====================== */
 
-
         // Instruction 5
         Animal lion = new Animal();
-        lion.family = "Félidé";
-        lion.name = "Lion";
-        lion.age = 5;
-        lion.isMammal = true;
+        lion.setFamily("Félidé");
+        lion.setName("Lion");
+        lion.setAge(5);
+        lion.setMammal(true);
 
         Zoo myZoo = new Zoo();
-        myZoo.name = "Parc Animalier";
-        myZoo.city = "Tunis";
+        myZoo.setName("Parc Animalier");
+        myZoo.setCity("Tunis");
 
-
-        System.out.println("Zoo : " + myZoo.name + " à " + myZoo.city);
-        System.out.println("Animal : " + lion.name + " (" + lion.family + ")");
-
+        System.out.println("Zoo : " + myZoo.getName() + " à " + myZoo.getCity());
+        System.out.println("Animal : " + lion.getName() + " (" + lion.getFamily() + ")");
 
         // Instruction 6 & 7
         Animal tiger = new Animal("Félidé", "Tiger", 4, true);
@@ -71,17 +71,13 @@ public class ZooManagement {
         System.out.println("Animal créé : " + parrot);
         System.out.println("Zoo créé : " + myZoo1);
 
-
         // Instruction 8
         myZoo1.displayZoo();
-
-
         System.out.println(myZoo1);
         System.out.println(myZoo1.toString());
 
 
         /* ====================== Prosit 3 ====================== */
-
 
         // Instruction 10
         myZoo1.addAnimal(tiger);
@@ -110,12 +106,33 @@ public class ZooManagement {
         autreZoo.addAnimal(new Animal("Félidé", "Chat", 2, true));
         compareZoos(myZoo1, autreZoo);
 
+
+        /* ====================== Prosit 4 ====================== */
+
+        // Test Instruction 17
+        Zoo zooTest = new Zoo("Grand Zoo", "Tunis", 2);
+        Animal lionTest = new Animal("Félidé", "Lion", 5, true);
+        Animal tigre = new Animal("Félidé", "Tigre", 3, true);
+        Animal chat = new Animal("Félidé", "Chat", 2, true);
+
+        zooTest.addAnimal(lionTest);
+        zooTest.addAnimal(tigre);
+        zooTest.addAnimal(chat);
+
+        // Test Instruction 18
+        Animal perroquet = new Animal("Psittacidae", "Perroquet", -3, false);
+        System.out.println(perroquet);
+
+        Zoo zooVide = new Zoo("", "Sfax", 10);
+        System.out.println(zooVide);
+
         sc.close();
     }
 
-    // afficher le zoo avec le plus d’animaux
+
     public static void compareZoos(Zoo z1, Zoo z2) {
         Zoo plusGrand = Zoo.comparerZoo(z1, z2);
-        System.out.println("Le zoo avec le plus d’animaux est : " + plusGrand.name + " avec " + plusGrand.animalCount + " animaux.");
+        System.out.println("Le zoo avec le plus d’animaux est : " + plusGrand.getName() +
+                " avec " + plusGrand.getAnimalCount() + " animaux.");
     }
 }
