@@ -128,7 +128,6 @@ public class ZooManagement {
         /* ====================== Prosit 5 ====================== */
 
         // Instruction 21
-        System.out.println("\n===== Prosit 5 - Instruction 21 : Instanciation =====");
         Aquatic aquaticAnimal = new Aquatic();
         Terrestrial terrestrialAnimal = new Terrestrial();
         Dolphin dolphin = new Dolphin();
@@ -141,7 +140,6 @@ public class ZooManagement {
         System.out.println(penguin);
 
         // Instruction 22
-        System.out.println("\n===== Instruction 22 : Constructeurs paramétrés =====");
         Aquatic aquatic1 = new Aquatic("Aquatic Family", "Poisson", 3, false, "mer");
         Terrestrial terrestrial1 = new Terrestrial("Canidé", "Chien", 4, true, 4);
         Dolphin dolphin1 = new Dolphin("Delphinidae", "Flipper", 6, true, "océan", 25.5f);
@@ -153,7 +151,6 @@ public class ZooManagement {
         System.out.println(penguin1);
 
         // Instruction 23
-        System.out.println("\n===== Instruction 23 : Vérification toString() =====");
         System.out.println("Aquatic → " + aquatic1.toString());
         System.out.println("Terrestrial → " + terrestrial1.toString());
         System.out.println("Dolphin → " + dolphin1.toString());
