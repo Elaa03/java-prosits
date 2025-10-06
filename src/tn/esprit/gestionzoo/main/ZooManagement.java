@@ -1,8 +1,6 @@
 package tn.esprit.gestionzoo.main;
 
-import tn.esprit.gestionzoo.entities.Animal;
-import tn.esprit.gestionzoo.entities.Zoo;
-
+import tn.esprit.gestionzoo.entities.*;
 import java.util.Scanner;
 
 public class ZooManagement {
@@ -10,13 +8,13 @@ public class ZooManagement {
 
         /* ====================== Prosit 1 ====================== */
 
-        //Instruction 1
+        // Instruction 1
         int nbrCages = 20;
         String zooName = "my zoo";
 
         System.out.println(zooName + " comporte " + nbrCages + " cages.");
 
-        //Instruction 2
+        // Instruction 2
         Scanner sc = new Scanner(System.in);
 
         System.out.print("Veuillez entrer le nom du zoo : ");
@@ -39,7 +37,7 @@ public class ZooManagement {
         }
         nbrCages = inputNbrCages;
 
-        //Instruction 3
+        // Instruction 3
         System.out.println(zooName + " comporte " + nbrCages + " cages.");
 
 
@@ -125,6 +123,46 @@ public class ZooManagement {
 
         Zoo zooVide = new Zoo("", "Sfax", 10);
         System.out.println(zooVide);
+
+
+        /* ====================== Prosit 5 ====================== */
+
+        // Instruction 21
+        System.out.println("\n===== Prosit 5 - Instruction 21 : Instanciation =====");
+        Aquatic aquaticAnimal = new Aquatic();
+        Terrestrial terrestrialAnimal = new Terrestrial();
+        Dolphin dolphin = new Dolphin();
+        Penguin penguin = new Penguin();
+
+        System.out.println("Objets créés avec succès :");
+        System.out.println(aquaticAnimal);
+        System.out.println(terrestrialAnimal);
+        System.out.println(dolphin);
+        System.out.println(penguin);
+
+        // Instruction 22
+        System.out.println("\n===== Instruction 22 : Constructeurs paramétrés =====");
+        Aquatic aquatic1 = new Aquatic("Aquatic Family", "Poisson", 3, false, "mer");
+        Terrestrial terrestrial1 = new Terrestrial("Canidé", "Chien", 4, true, 4);
+        Dolphin dolphin1 = new Dolphin("Delphinidae", "Flipper", 6, true, "océan", 25.5f);
+        Penguin penguin1 = new Penguin("Spheniscidae", "Pingo", 2, false, "bassin", 10.2f);
+
+        System.out.println(aquatic1);
+        System.out.println(terrestrial1);
+        System.out.println(dolphin1);
+        System.out.println(penguin1);
+
+        // Instruction 23
+        System.out.println("\n===== Instruction 23 : Vérification toString() =====");
+        System.out.println("Aquatic → " + aquatic1.toString());
+        System.out.println("Terrestrial → " + terrestrial1.toString());
+        System.out.println("Dolphin → " + dolphin1.toString());
+        System.out.println("Penguin → " + penguin1.toString());
+
+        //Instruction 24
+        aquatic1.swim();
+        dolphin1.swim();
+        penguin1.swim();
 
         sc.close();
     }
