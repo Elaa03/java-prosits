@@ -164,6 +164,39 @@ public class ZooManagement {
         dolphin1.swim();
         penguin1.swim();
 
+
+
+        // ====================== Prosit 6 ======================
+
+        Zoo aquaticZoo = new Zoo("AquaWorld", "Sousse", 15);
+
+        Dolphin d1 = new Dolphin("Delphinidae", "Dolly", 8, true, "océan", 30.5f);
+        Dolphin d2 = new Dolphin("Delphinidae", "Blue", 5, true, "mer", 28.3f);
+        Penguin p1 = new Penguin("Spheniscidae", "Pingo", 3, false, "bassin", 12.8f);
+        Penguin p2 = new Penguin("Spheniscidae", "Chilly", 4, false, "glace", 15.0f);
+
+        aquaticZoo.addAquaticAnimal(d1);
+        aquaticZoo.addAquaticAnimal(d2);
+        aquaticZoo.addAquaticAnimal(p1);
+        aquaticZoo.addAquaticAnimal(p2);
+
+
+        System.out.println("\nTous les animaux aquatiques nagent :");
+        aquaticZoo.makeAquaticAnimalsSwim();
+
+
+        System.out.println("\nProfondeur maximale des pingouins : " + aquaticZoo.maxPenguinSwimmingDepth() + " m");
+
+
+        System.out.println("\nNombre d’animaux aquatiques par type :");
+        aquaticZoo.displayNumberAquaticsByType();
+
+
+        System.out.println("\nTest equals() entre deux dauphins : " + d1.equals(d2));
+        Dolphin d3 = new Dolphin("Delphinidae", "Dolly", 8, true, "océan", 31f);
+        System.out.println("Test equals() entre d1 et d3 (même nom, âge, habitat) : " + d1.equals(d3));
+
+
         sc.close();
     }
 
@@ -173,4 +206,6 @@ public class ZooManagement {
         System.out.println("Le zoo avec le plus d’animaux est : " + plusGrand.getName() +
                 " avec " + plusGrand.getAnimalCount() + " animaux.");
     }
+
+
 }
