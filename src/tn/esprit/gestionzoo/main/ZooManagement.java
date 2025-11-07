@@ -1,6 +1,7 @@
 package tn.esprit.gestionzoo.main;
 
 import tn.esprit.gestionzoo.entities.*;
+import tn.esprit.gestionzoo.exceptions.*;
 import java.util.Scanner;
 
 public class ZooManagement {
@@ -78,11 +79,11 @@ public class ZooManagement {
         /* ====================== Prosit 3 ====================== */
 
         // Instruction 10
-        myZoo1.addAnimal(tiger);
-        myZoo1.addAnimal(crocodile);
-        myZoo1.addAnimal(parrot);
-        myZoo1.addAnimal(lion);
-        boolean ajout = myZoo1.addAnimal(tiger);
+        myZoo1.addAnimal1(tiger);
+        myZoo1.addAnimal1(crocodile);
+        myZoo1.addAnimal1(parrot);
+        myZoo1.addAnimal1(lion);
+        boolean ajout = myZoo1.addAnimal1(tiger);
         System.out.println("Ajout animal déjà existant : " + ajout);
 
         // Instruction 11
@@ -101,7 +102,7 @@ public class ZooManagement {
 
         // Instruction 16
         Zoo autreZoo = new Zoo("MiniZoo", "Sfax", 20);
-        autreZoo.addAnimal(new Animal("Félidé", "Chat", 2, true));
+        autreZoo.addAnimal1(new Animal("Félidé", "Chat", 2, true));
         compareZoos(myZoo1, autreZoo);
 
 
@@ -113,9 +114,9 @@ public class ZooManagement {
         Animal tigre = new Animal("Félidé", "Tigre", 3, true);
         Animal chat = new Animal("Félidé", "Chat", 2, true);
 
-        zooTest.addAnimal(lionTest);
-        zooTest.addAnimal(tigre);
-        zooTest.addAnimal(chat);
+        zooTest.addAnimal1(lionTest);
+        zooTest.addAnimal1(tigre);
+        zooTest.addAnimal1(chat);
 
         // Test Instruction 18
         Animal perroquet = new Animal("Psittacidae", "Perroquet", -3, false);
@@ -129,7 +130,12 @@ public class ZooManagement {
 
         // Instruction 21
         System.out.println("\n===== Prosit 5 - Instruction 21 : Instanciation =====");
-        Aquatic aquaticAnimal = new Aquatic();
+        Aquatic aquaticAnimal = new Aquatic() {
+            @Override
+            public void swim() {
+
+            }
+        };
         Terrestrial terrestrialAnimal = new Terrestrial();
         Dolphin dolphin = new Dolphin();
         Penguin penguin = new Penguin();
@@ -142,25 +148,24 @@ public class ZooManagement {
 
         // Instruction 22
         System.out.println("\n===== Instruction 22 : Constructeurs paramétrés =====");
-        Aquatic aquatic1 = new Aquatic("Aquatic Family", "Poisson", 3, false, "mer");
         Terrestrial terrestrial1 = new Terrestrial("Canidé", "Chien", 4, true, 4);
         Dolphin dolphin1 = new Dolphin("Delphinidae", "Flipper", 6, true, "océan", 25.5f);
         Penguin penguin1 = new Penguin("Spheniscidae", "Pingo", 2, false, "bassin", 10.2f);
 
-        System.out.println(aquatic1);
+
         System.out.println(terrestrial1);
         System.out.println(dolphin1);
         System.out.println(penguin1);
 
         // Instruction 23
         System.out.println("\n===== Instruction 23 : Vérification toString() =====");
-        System.out.println("Aquatic → " + aquatic1.toString());
+
         System.out.println("Terrestrial → " + terrestrial1.toString());
         System.out.println("Dolphin → " + dolphin1.toString());
         System.out.println("Penguin → " + penguin1.toString());
 
         //Instruction 24
-        aquatic1.swim();
+
         dolphin1.swim();
         penguin1.swim();
 
@@ -195,6 +200,31 @@ public class ZooManagement {
         System.out.println("\nTest equals() entre deux dauphins : " + d1.equals(d2));
         Dolphin d3 = new Dolphin("Delphinidae", "Dolly", 8, true, "océan", 31f);
         System.out.println("Test equals() entre d1 et d3 (même nom, âge, habitat) : " + d1.equals(d3));
+
+
+
+        //--------------------prosit-7--------------
+
+        Zoo smallZoo = new Zoo("Petit Zoo", "Sousse", 3);
+
+        Animal a1 = new Animal("Félidé", "Lion", 5, true);
+        Animal a2 = new Animal("Canidé", "Chien", 2, true);
+        Animal a3 = new Animal("Crocodylidae", "Crocodile", 12, false);
+        Animal a4 = new Animal("Psittacidae", "Perroquet", -1, false); // âge invalide
+
+        Animal[] animalsToAdd = {a1, a2, a3, a4};
+
+        for (Animal animal : animalsToAdd) {
+            try {
+                smallZoo.addAnimal(animal);
+            } catch (ZooFullException e) {
+                System.out.println("🚫 " + e.getMessage());
+            } catch (InvalidAgeException e) {
+                System.out.println("⚠️ " + e.getMessage());
+            } finally {
+                System.out.println("Nombre d’animaux actuellement dans le zoo : " + smallZoo.getAnimalCount());
+            }
+        }
 
 
         sc.close();

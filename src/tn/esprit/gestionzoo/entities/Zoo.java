@@ -4,6 +4,9 @@
 // Instruction 19
 
 package tn.esprit.gestionzoo.entities;
+import tn.esprit.gestionzoo.exceptions.*;
+import tn.esprit.gestionzoo.exceptions.InvalidAgeException;
+import tn.esprit.gestionzoo.exceptions.ZooFullException;
 
 public class Zoo {
     private Animal[] animals;
@@ -71,7 +74,7 @@ public class Zoo {
     }
 
     // Instruction 17
-    public boolean addAnimal(Animal animal) {
+    public boolean addAnimal1(Animal animal) {
         if (isZooFull()) {
             System.out.println(" Impossible d’ajouter " + animal.getName() + " : le zoo est plein !");
             return false;
@@ -174,6 +177,36 @@ public class Zoo {
         System.out.println("Nombre de dauphins : " + dolphinCount);
         System.out.println("Nombre de pingouins : " + penguinCount);
     }
+
+
+    //---------------prosit-7---------
+
+    //Instruction 32:
+
+    public void addAnimal(Animal animal) throws ZooFullException, InvalidAgeException {
+
+        if (animal.getAge() < 0) {
+            throw new InvalidAgeException("Âge d’animal invalide : l’âge ne peut pas être négatif.");
+        }
+
+
+        if (isZooFull()) {
+            throw new ZooFullException("Le zoo est plein, impossible d’ajouter un nouvel animal.");
+        }
+
+
+        for (int i = 0; i < animalCount; i++) {
+            if (animals[i].getName().equalsIgnoreCase(animal.getName())) {
+                System.out.println("⚠️ " + animal.getName() + " est déjà présent dans le zoo.");
+                return;
+            }
+        }
+
+        animals[animalCount++] = animal;
+        System.out.println("✅ " + animal.getName() + " ajouté avec succès !");
+    }
+
+
 }
 
 
