@@ -1,4 +1,5 @@
 package tn.esprit.gestionemployes;
+import java.util.Objects;
 
 public class Employe {
     private int id;
@@ -42,5 +43,19 @@ public class Employe {
                 ", nomDepartement='" + nomDepartement + '\'' +
                 ", grade=" + grade +
                 '}';
+    }
+
+    //------------Ajout pour Prosit 9-------------------
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Employe)) return false;
+        Employe employe = (Employe) o;
+        return id == employe.id && Objects.equals(nom, employe.nom);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nom);
     }
 }
